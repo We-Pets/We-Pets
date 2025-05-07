@@ -258,7 +258,7 @@ p { margin-bottom: 15px; }
  * Hero Section
  * ------------------- */
  .hero-section {
-    background-image: url('../images/hero-bg.jpg'); /* 배경 이미지 경로 수정 */
+    background-image: url('../images/hero-bg.png'); /* 배경 이미지 경로 수정 */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
