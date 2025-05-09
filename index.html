@@ -1,393 +1,876 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="We Pets - 나도 모르게 반려동물을 괴롭히고 있었을지도 몰라요. 이젠, We Pets와 함께 제대로 사랑하는 법을 배워요!">
-    <title>We Pets - 슬기로운 반려생활 가이드</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts (예시: Noto Sans KR) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;400&display=swap" rel="stylesheet">
-    <!-- Font Awesome (아이콘 사용 시) -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퍼피프렌즈 - 당신의 반려견 입양 준비를 도와드립니다</title>
+  <style>
+    :root {
+      --primary: #FFC857; /* 따뜻한 포근한 노랑 */
+      --primary-hover: #FFB300; /* 진한 오렌지 노랑 */
+      --secondary: #FF914D; /* 밝은 오렌지 */
+      --secondary-hover: #FF6F00; /* 강렬한 주황 */
+      --accent: #FFE29A; /* 연노랑 포인트 */
+      --accent-hover: #FFD36E; /* 더 진한 연노랑 */
+      --text: #6B3F13; /* 진한 브라운 */
+      --text-light: #B88B4A; /* 연한 브라운 */
+      --background: #FFFFFF; /* 완전 흰색 */
+      --white: #FFFFFF;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+      color: var(--text);
+      background-color: var(--background);
+      line-height: 1.6;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span {
+      margin-left: 8px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline {
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary-hover);
+      color: var(--white);
+      border-color: var(--primary-hover);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--secondary-hover);
+      color: var(--white);
+    }
+    
+    .cta-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    
+    .cta-btn.btn-primary {
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+      color: var(--white);
+      border: none;
+    }
+    
+    .cta-btn.btn-primary:hover {
+      background: linear-gradient(90deg, var(--primary-hover) 60%, var(--secondary-hover) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(255, 145, 77, 0.18);
+    }
+    
+    .cta-btn.btn-outline {
+      border: 1.5px solid var(--secondary);
+      color: var(--secondary);
+      background: transparent;
+    }
+    
+    .cta-btn.btn-outline:hover {
+      background-color: var(--accent-hover);
+      color: var(--secondary-hover);
+      border-color: var(--secondary-hover);
+    }
+    
+    .cta-btn-white {
+      background-color: var(--white);
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    
+    .cta-btn-white:hover {
+      background-color: var(--primary-hover);
+      color: var(--white);
+      border-color: var(--primary-hover);
+      box-shadow: 0 4px 16px rgba(255, 184, 76, 0.18);
+    }
+    
+    .hero {
+      padding: 160px 0 80px;
+      background: linear-gradient(to bottom, #FFF7E0 60%, var(--background)); /* 연노랑~흰색 */
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text);
+      max-width: 800px;
+      margin: 0 auto 24px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    
+    .hero-image {
+      max-width: 80%;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .features {
+      padding: 80px 0;
+      background: #FFF7E0; /* 연노랑 배경 */
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .feature-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      background-color: rgba(59, 130, 246, 0.1);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--primary);
+    }
+    
+    .feature-card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card p {
+      color: var(--text-light);
+    }
+    
+    .solution-section {
+      padding: 80px 0;
+      background-color: #FFF7E0; /* 연노랑 배경 */
+    }
+    
+    .solution-intro {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: center;
+      font-size: 18px;
+      color: var(--text-light);
+    }
+    
+    .solution-items {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .solution-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .solution-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    
+    .solution-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .solution-icon {
+      background-color: rgba(59, 130, 246, 0.1);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    
+    .solution-content h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .solution-content p {
+      color: var(--text-light);
+      margin: 0;
+    }
+    
+    .testimonials {
+      padding: 80px 0;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .testimonial-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #DDD;
+      margin-right: 16px;
+      overflow: hidden;
+    }
+    
+    .author-info h4 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    
+    .author-info p {
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    
+    .cta-section p {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      font-size: 18px;
+    }
+    
+    footer {
+      background-color: #1F2937;
+      color: var(--white);
+      padding: 64px 0 32px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    
+    .footer-logo {
+      color: var(--white);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .footer-description {
+      color: #D1D5DB;
+      margin-bottom: 24px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer-links h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #D1D5DB;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 32px;
+      text-align: center;
+      color: #9CA3AF;
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .step {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .step-number {
+        margin: 0 auto 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- 헤더 (네비게이션 바) -->
-    <header class="header">
-        <div class="container">
-            <a href="#" class="logo">
-                <img src="images/logo.png" alt="We Pets 로고"> <!-- 로고 이미지 경로 수정 필요 -->
-                <span>We Pets</span>
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823 0.47-4.113 6.006-1 7 2.015 0.646 4.087 0.646 6.5 1 1.684 0.247 3.5 0.711 3.5 2.5 0 1.5-3.148 2.172-4.5 1.5C9.765 14.471 9 13 9 11"></path>
+          <path d="M14 12.5c1.5 0 3 1.5 3 3"></path>
+          <path d="M8.5 7c0 .828.672 1.5 1.5 1.5s1.5-.672 1.5-1.5S10.828 5.5 10 5.5 8.5 6.172 8.5 7Z"></path>
+        </svg>
+        <span>퍼피프렌즈</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="#features">서비스 소개</a>
+        <a href="#how-it-works">이용 방법</a>
+        <a href="#testimonials">후기</a>
+        <a href="#faq">자주 묻는 질문</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <button class="btn btn-outline">로그인</button>
+        <button class="btn btn-primary">회원가입</button>
+      </div>
+    </div>
+  </header>
+  
+  <section class="hero">
+    <div class="container">
+      <h1>행복한 반려견 입양, 준비부터 함께합니다</h1>
+      <p>퍼피프렌즈는 반려견 입양을 준비하는 모든 과정을 도와드립니다. 맞춤형 체크리스트부터 전문가 상담까지, 새로운 가족을 맞이할 준비를 완벽하게!</p>
+      
+      <div class="cta-buttons">
+        <button class="cta-btn btn-primary">무료로 시작하기</button>
+        <button class="cta-btn btn-outline">서비스 둘러보기</button>
+      </div>
+      
+      <img src="/api/placeholder/800/450" alt="행복한 반려견과 가족" class="hero-image">
+    </div>
+  </section>
+  
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">퍼피프렌즈와 함께하는 입양 준비</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+              <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+              <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+              <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+              <circle cx="12" cy="12" r="4"></circle>
+            </svg>
+          </div>
+          <h3>맞춤형 체크리스트</h3>
+          <p>견종, 크기, 나이에 따른 맞춤형 준비 체크리스트로 필요한 준비물부터 환경 조성까지 빠짐없이 준비하세요.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 9.5V4a2 2 0 0 1 2-2h3.5"></path>
+              <path d="M2 14.5V20a2 2 0 0 0 2 2h3.5"></path>
+              <path d="M22 9.5V4a2 2 0 0 0-2-2h-3.5"></path>
+              <path d="M22 14.5V20a2 2 0 0 1-2 2h-3.5"></path>
+              <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+            </svg>
+          </div>
+          <h3>전문가 상담</h3>
+          <p>수의사, 훈련사, 경험 많은 반려인과의 1:1 상담으로 입양 전 궁금한 점을 해결하세요.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" x2="8" y1="13" y2="13"></line>
+              <line x1="16" x2="8" y1="17" y2="17"></line>
+              <line x1="10" x2="8" y1="9" y2="9"></line>
+            </svg>
+          </div>
+          <h3>입양 가이드북</h3>
+          <p>입양 초기부터 함께 할 평생 동안 필요한 모든 지식이 담긴 맞춤형 가이드북을 제공합니다.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </div>
+          <h3>지역 서비스 연결</h3>
+          <p>가까운 동물병원, 미용실, 훈련소, 펫시터 등 필요한 모든 서비스를 쉽게 찾고 예약하세요.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 6.1H3"></path>
+              <path d="M21 12.1H3"></path>
+              <path d="M15.1 18H3"></path>
+            </svg>
+          </div>
+          <h3>맞춤형 훈련 계획</h3>
+          <p>반려견의 성격과 특성에 맞는 훈련 계획으로 건강한 관계를 형성하세요.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>반려인 커뮤니티</h3>
+          <p>같은 고민을 가진 예비 반려인들과 소통하고, 선배 반려인들의 조언을 받아보세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="solution-section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">✨ 펫밀리가 제공하는 특별한 준비 과정 ✨</h2>
+      <p class="solution-intro">펫밀리는 반려견 입양 전 필수적인 정보와 준비 사항을 맞춤형으로 제공하여, 예비 반려인과 미래의 반려견 모두가 행복한 첫걸음을 내디딜 수 있도록 돕습니다.</p>
+      
+      <div class="solution-items">
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823 0.47-4.113 6.006-1 7 2.015 0.646 4.087 0.646 6.5 1 1.684 0.247 3.5 0.711 3.5 2.5 0 1.5-3.148 2.172-4.5 1.5C9.765 14.471 9 13 9 11"></path>
+              <path d="M14 12.5c1.5 0 3 1.5 3 3"></path>
+              <path d="M8.5 7c0 .828.672 1.5 1.5 1.5s1.5-.672 1.5-1.5S10.828 5.5 10 5.5 8.5 6.172 8.5 7Z"></path>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>1. 🐶 우리 가족 맞춤 반려견 찾기</h3>
+            <p>간단한 라이프스타일 설문을 통해 우리 가족의 성향, 환경, 생활 패턴에 가장 잘 맞는 견종과 성격의 반려견 정보를 추천해 드립니다. 유기견 입양 정보 연계도 도와드립니다.</p>
+          </div>
+        </div>
+        
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>2. 🏡 반려견 맞이 환경 준비 가이드</h3>
+            <p>반려견이 안전하고 편안하게 생활할 수 있도록 공간 구성, 안전용품 설치 등 단계별 환경 준비 체크리스트를 제공합니다.</p>
+          </div>
+        </div>
+        
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>3. 🛒 입양 전후 필수 용품 & 예산 플래너</h3>
+            <p>사료, 배변용품, 장난감 등 꼭 필요한 물품 리스트와 예상 비용을 정리해 드립니다. 합리적인 예산 계획을 세울 수 있도록 돕습니다.</p>
+          </div>
+        </div>
+        
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>4. 🎓 쉽고 재미있는 첫 교육 가이드</h3>
+            <p>긍정 강화 기반의 기초 교육 방법을 안내하며, 수의사 및 행동 전문가가 검증한 신뢰할 수 있는 교육 콘텐츠를 제공합니다.</p>
+          </div>
+        </div>
+        
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>5. ✅ 건강 및 응급상황 대비 플랜</h3>
+            <p>예방 접종 스케줄, 정기 검진, 가까운 동물병원 정보, 응급 상황 대처 요령 등 미리 준비해야 할 사항들을 알려드립니다.</p>
+          </div>
+        </div>
+        
+        <div class="solution-item">
+          <div class="solution-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="solution-content">
+            <h3>6. 🤝 예비 반려인 커뮤니티 (출시 예정)</h3>
+            <p>같은 고민을 가진 예비 반려인들과 정보를 공유하고 서로 응원하는 따뜻한 소통 공간을 제공합니다. 선배 반려인들의 생생한 경험담도 얻을 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">행복한 가족들의 이야기</h2>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"퍼피프렌즈 덕분에 입양 준비 과정이 훨씬 수월했어요. 체크리스트가 아주 상세해서 필요한 모든 것을 준비할 수 있었고, 수의사 상담은 정말 큰 도움이 되었습니다."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/48/48" alt="김민지">
+            </div>
+            <div class="author-info">
+              <h4>김민지</h4>
+              <p>포메라니안 '콩이' 엄마</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"처음으로 강아지를 입양하는 터라 정말 많이 긴장했는데, 퍼피프렌즈의 가이드북과 커뮤니티 덕분에 자신감을 얻을 수 있었어요. 이제 쿠키와 행복하게 지내고 있습니다!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/48/48" alt="이준호">
+            </div>
+            <div class="author-info">
+              <h4>이준호</h4>
+              <p>믹스견 '쿠키' 아빠</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"입양 전에 필요한 모든 정보를 한 곳에서 얻을 수 있어서 너무 좋았어요. 특히 훈련 계획 덕분에 우리 뭉치는 처음부터 예의 바른 강아지로 자랄 수 있었습니다."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/48/48" alt="박소연">
+            </div>
+            <div class="author-info">
+              <h4>박소연</h4>
+              <p>골든리트리버 '뭉치' 엄마</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section">
+    <div class="container">
+      <h2>함께 시작해볼까요?</h2>
+      <p>지금 가입하고 반려견과의 행복한 시작을 준비하세요. 첫 30일 동안 모든 기능을 무료로 이용할 수 있습니다.</p>
+      <button class="cta-btn-white">무료로 시작하기</button>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-company">
+          <div class="footer-logo">퍼피프렌즈</div>
+          <p class="footer-description">반려견 입양 준비부터 평생 함께하는 동반자가 되어드립니다.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
             </a>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#empathy" class="nav-link">우리의 고민</a></li>
-                    <li class="nav-item"><a href="#solution" class="nav-link">We Pets 솔루션</a></li>
-                    <li class="nav-item"><a href="#guides" class="nav-link">가이드 보기</a></li>
-                    <li class="nav-item"><a href="#why-us" class="nav-link">왜 We Pets?</a></li>
-                </ul>
-            </nav>
-            <button class="nav-toggle" aria-label="메뉴 열기/닫기">
-                <span class="hamburger"></span>
-            </button>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <!-- Section 1: 히어로 섹션 -->
-        <section id="hero" class="hero-section">
-            <div class="hero-overlay"></div> <!-- 배경 이미지 어둡게 처리용 -->
-            <div class="container hero-content text-center">
-                <h1 class="hero-title">
-                    나도 모르게 반려동물을 괴롭히고 있었을지도 몰라요.<br>
-                    <span class="highlight">이젠, We Pets와 함께 제대로 사랑하는 법을 배워요!</span>
-                </h1>
-                <p class="hero-subtitle">
-                    무심코 했던 사소한 행동, 먹이던 간식 하나가 우리 아이에겐 큰 스트레스였을 수 있다는 사실, 알고 계셨나요?<br>
-                    We Pets는 당신의 진심 어린 사랑이 아이에게 온전히 전달될 수 있도록, 검증된 정보와 올바른 가이드를 제공합니다.
-                </p>
-                <a href="#solution" class="btn btn-lg">We Pets 솔루션 바로 확인하기</a>
-            </div>
-        </section>
-
-        <!-- Section 2: 공감 및 문제 심화 -->
-        <section id="empathy" class="empathy-section section-padding">
-            <div class="container">
-                <h2 class="section-title text-center">혹시, 당신도 이런 고민을 안고 계신가요? <br class="mobile-break">혼자가 아니에요.</h2>
-                <div class="empathy-grid">
-                    <!-- 고민 1: 사료/간식 -->
-                    <div class="empathy-item">
-                        <div class="empathy-icon">
-                            <img src="images/food.png" alt="사료 고민 아이콘"> <!-- 아이콘 경로 수정 필요 -->
-                        </div>
-                        <h3 class="empathy-item-title">어떤 사료/간식을 골라야 할지...</h3>
-                        <p class="empathy-item-text">
-                            넘쳐나는 정보 속, 우리 아이에게 '진짜' 좋은 건 뭘까요?
-                            혹시 잘못된 선택으로 건강을 해치고 있진 않을까요?
-                        </p>
-                    </div>
-
-                    <!-- 고민 2: 이상 행동 -->
-                    <div class="empathy-item">
-                        <div class="empathy-icon">
-                            <img src="images/question-action.png" alt="이상 행동 아이콘"> <!-- 아이콘 경로 수정 필요 -->
-                        </div>
-                        <h3 class="empathy-item-title">갑자기 이상 행동을 보여요!</h3>
-                        <p class="empathy-item-text">
-                            짖고, 물고, 숨어버리는 아이... 혹시 나도 모르게 스트레스를 주고 있었던 걸까요?
-                            원인 모를 행동에 답답하기만 해요.
-                        </p>
-                    </div>
-
-                    <!-- 고민 3: 건강/예방접종 -->
-                    <div class="empathy-item">
-                        <div class="empathy-icon">
-                            <img src="images/health.png" alt="건강 검진 아이콘"> <!-- 아이콘 경로 수정 필요 -->
-                        </div>
-                        <h3 class="empathy-item-title">예방접종, 건강검진... 꼭 해야 할까요?</h3>
-                        <p class="empathy-item-text">
-                            복잡한 정보와 만만찮은 비용. 무엇이 필수고, 언제 해야 하는지
-                            정확히 알고 싶어요.
-                        </p>
-                    </div>
-
-                    <!-- 고민 4: 노령 케어 -->
-                    <div class="empathy-item">
-                        <div class="empathy-icon">
-                            <img src="images/old-care.png" alt="노령 케어 아이콘"> <!-- 아이콘 경로 수정 필요 -->
-                        </div>
-                        <h3 class="empathy-item-title">나이 드는 우리 아이, 마음이 아파요.</h3>
-                        <p class="empathy-item-text">
-                            예전 같지 않은 모습, 어떻게 케어해야 마지막까지 행복할 수 있을까요?
-                            준비되지 않은 이별은 생각하고 싶지 않아요.
-                        </p>
-                    </div>
-
-                    <!-- 고민 5: 정보 신뢰도 -->
-                    <div class="empathy-item">
-                        <div class="empathy-icon">
-                            <img src="images/logo.png" alt="정보 신뢰 아이콘"> <!-- 아이콘 경로 수정 필요 -->
-                        </div>
-                        <h3 class="empathy-item-title">인터넷 정보, 뭐가 진짜일까요?</h3>
-                        <p class="empathy-item-text">
-                            '카더라' 통신에 지쳤어요. 검증되지 않은 정보로
-                            우리 아이를 실험 대상으로 삼을 순 없잖아요!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3: We Pets의 약속 - 솔루션 제시 -->
-        <section id="solution" class="solution-section section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title text-center">
-                    더 이상 혼자 끙끙 앓지 마세요.<br>
-                    We Pets가 당신과 반려동물의 행복을 위한 <span class="highlight-green">명확한 길</span>을 제시합니다.
-                </h2>
-                <div class="solution-grid">
-                    <!-- 솔루션 1: 정확한 정보 필터링 -->
-                    <div class="solution-item">
-                        <div class="solution-icon-wrapper">
-                            <img src="images/icon-verified-info.svg" alt="검증된 정보 아이콘" class="solution-icon">
-                        </div>
-                        <h3 class="solution-item-title">정확한 정보 필터링</h3>
-                        <p class="solution-item-text">
-                            잘못된 정보는 이제 그만! We Pets는 수의학 및 행동학 전문가가
-                            검증한 정확하고 최신의 정보만을 선별하여 제공합니다.
-                        </p>
-                    </div>
-
-                    <!-- 솔루션 2: 맞춤형 문제 해결 가이드 -->
-                    <div class="solution-item">
-                        <div class="solution-icon-wrapper">
-                            <img src="images/icon-custom-guide.svg" alt="맞춤 가이드 아이콘" class="solution-icon">
-                        </div>
-                        <h3 class="solution-item-title">맞춤형 문제 해결 가이드</h3>
-                        <p class="solution-item-text">
-                            영양, 행동, 건강, 노령 케어까지! 당신의 고민과 반려동물의 특성에 맞는
-                            실질적인 해결책을 단계별로 쉽게 찾아보세요.
-                        </p>
-                    </div>
-
-                    <!-- 솔루션 3: 이해와 공감 기반의 소통 -->
-                    <div class="solution-item">
-                        <div class="solution-icon-wrapper">
-                            <img src="images/icon-empathy-communication.svg" alt="공감 소통 아이콘" class="solution-icon">
-                        </div>
-                        <h3 class="solution-item-title">이해와 공감 기반의 소통</h3>
-                        <p class="solution-item-text">
-                            반려동물의 시각에서 이해하고, 올바르게 소통하는 법을 알려드립니다.
-                            진정한 교감으로 더 깊은 관계를 만드세요.
-                        </p>
-                    </div>
-
-                    <!-- 솔루션 4: 지속적인 성장 지원 -->
-                    <div class="solution-item">
-                        <div class="solution-icon-wrapper">
-                            <img src="images/icon-continuous-growth.svg" alt="지속 성장 아이콘" class="solution-icon">
-                        </div>
-                        <h3 class="solution-item-title">지속적인 성장 지원</h3>
-                        <p class="solution-item-text">
-                            We Pets는 반려동물과 함께 성장하는 당신을 위해, 꾸준히 업데이트되는
-                            양질의 콘텐츠로 든든한 동반자가 되어 드리겠습니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: We Pets 가이드 살펴보기 -->
-        <section id="guides" class="guides-section section-padding">
-            <div class="container">
-                <h2 class="section-title text-center">지금, 당신에게 가장 필요한 We Pets 가이드는 무엇인가요?</h2>
-                <div class="guides-grid">
-                    <!-- 가이드 1: 영양 & 사료 -->
-                    <a href="#" class="guide-card"> <!-- 각 카드는 링크로 만듦 -->
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-nutrition.svg" alt="영양 & 사료 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">깐깐한 집사를 위한<br>영양 & 사료 가이드</h3>
-                        <p class="guide-card-description">수의사가 추천하는 사료 고르는 법, 알레르기 걱정 없는 간식 레시피까지!</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-
-                    <!-- 가이드 2: 행동 교정 -->
-                    <a href="#" class="guide-card">
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-behavior.svg" alt="행동 교정 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">문제 행동 완벽 분석!<br>행동 교정 솔루션</h3>
-                        <p class="guide-card-description">강아지 분리불안, 고양이 스크래칭 문제 등 원인부터 해결까지 명쾌하게 알려드려요.</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-
-                    <!-- 가이드 3: 건강 관리 -->
-                    <a href="#" class="guide-card">
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-health.svg" alt="건강 관리 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">우리 아이 맞춤<br>건강 관리 플랜 A to Z</h3>
-                        <p class="guide-card-description">필수 예방접종 총정리, 정기 검진 항목, 응급 상황 대처법을 확인하세요.</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-
-                    <!-- 가이드 4: 노령동물 케어 -->
-                    <a href="#" class="guide-card">
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-senior.svg" alt="노령동물 케어 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">시니어펫과 행복하게!<br>노령동물 케어법</h3>
-                        <p class="guide-card-description">관절 관리, 치매 예방, 식단 조절 등 노령견/묘를 위한 모든 것을 알려드립니다.</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-
-                    <!-- 가이드 5: 필수 육아템 & 기초 상식 -->
-                    <a href="#" class="guide-card">
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-basics.svg" alt="기초 상식 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">초보 집사도 OK!<br>필수 육아템 & 기초 상식</h3>
-                        <p class="guide-card-description">입양 준비물부터 반려동물과의 첫날, 꼭 알아야 할 기본 상식들을 모았어요.</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-
-                    <!-- 가이드 6: 전문가 칼럼 -->
-                    <a href="#" class="guide-card guide-card-special"> <!-- 특별한 카드 스타일링을 위해 클래스 추가 -->
-                        <div class="guide-card-icon">
-                            <img src="images/guide-icon-expert.svg" alt="전문가 칼럼 아이콘">
-                        </div>
-                        <h3 class="guide-card-title">We Pets 전문가 칼럼<br>깊이 있는 정보 & 최신 이슈</h3>
-                        <p class="guide-card-description">수의사, 훈련사가 직접 전하는 전문 지식과 반려동물 업계의 최신 동향을 만나보세요.</p>
-                        <span class="guide-card-cta">자세히 보기 →</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5: We Pets를 선택해야 하는 이유 -->
-        <section id="why-us" class="why-us-section section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title text-center">넘쳐나는 정보 속, 왜 <span class="highlight-brand">We Pets</span>여야 할까요?</h2>
-                <div class="why-us-grid">
-                    <!-- 이유 1: 전문가 검증 -->
-                    <div class="why-us-item">
-                        <div class="why-us-icon-wrapper">
-                            <img src="images/icon-expert-verified.svg" alt="전문가 검증 아이콘" class="why-us-icon">
-                        </div>
-                        <h3 class="why-us-item-title">전문가 검증, 100% 신뢰</h3>
-                        <p class="why-us-item-text">
-                            모든 콘텐츠는 현직 수의사 및 반려동물 행동 전문가의 꼼꼼한 검토를 거칩니다.
-                            더 이상 '카더라'에 현혹되지 마세요.
-                        </p>
-                    </div>
-
-                    <!-- 이유 2: 실질적 행동 변화 -->
-                    <div class="why-us-item">
-                        <div class="why-us-icon-wrapper">
-                            <img src="images/icon-actionable-tips.svg" alt="실용적 팁 아이콘" class="why-us-icon">
-                        </div>
-                        <h3 class="why-us-item-title">실질적인 '행동 변화' 유도</h3>
-                        <p class="why-us-item-text">
-                            이론만 나열하는 정보는 NO! 반려동물을 '진짜' 이해하고, '바로' 적용할 수 있는
-                            실용적인 팁과 노하우를 제공하여 긍정적인 변화를 만듭니다.
-                        </p>
-                    </div>
-
-                    <!-- 이유 3: 반려동물 중심적 관점 -->
-                    <div class="why-us-item">
-                        <div class="why-us-icon-wrapper">
-                            <img src="images/icon-pet-centric.svg" alt="반려동물 중심 아이콘" class="why-us-icon">
-                        </div>
-                        <h3 class="why-us-item-title">반려동물 중심적 관점</h3>
-                        <p class="why-us-item-text">
-                            사람의 편의가 아닌, 우리 아이의 행복을 최우선으로 생각합니다. 반려동물의 마음을 읽고
-                            진정으로 교감하는 방법을 알려드립니다.
-                        </p>
-                    </div>
-
-                    <!-- 이유 4: 함께 성장하는 커뮤니티 (비전) -->
-                    <div class="why-us-item">
-                        <div class="why-us-icon-wrapper">
-                            <img src="images/icon-community-growth.svg" alt="커뮤니티 성장 아이콘" class="why-us-icon">
-                        </div>
-                        <h3 class="why-us-item-title">함께 성장하는 커뮤니티 (Vision)</h3>
-                        <p class="why-us-item-text">
-                            We Pets는 단순 정보 제공을 넘어, 같은 고민을 가진 반려인들이 서로 지지하고 배우며
-                            함께 성장하는 따뜻한 커뮤니티를 지향합니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: (선택) 실제 변화 이야기 (Social Proof) -->
-        <section id="social-proof" class="social-proof-section section-padding">
-            <div class="container">
-                <h2 class="section-title text-center">We Pets와 함께, <span class="highlight-orange">이렇게 달라졌어요!</span></h2>
-                <div class="testimonial-slider"> <!-- 슬라이더 구현은 JS 필요, 기본 마크업만 제공 -->
-                    <!-- 후기 1 -->
-                    <div class="testimonial-item">
-                        <img src="images/testimonial-avatar-1.jpg" alt="김민지 님 프로필 사진" class="testimonial-avatar">
-                        <blockquote class="testimonial-quote">
-                            "강아지를 처음 데려왔을 때, 헤드라인처럼 정말 제가 아이를 괴롭히는 건 아닐까 매일 불안했어요.
-                            We Pets 가이드대로 사료도 바꾸고 놀이 방법도 배웠더니, 이제는 우리 댕댕이가 매일 웃어요!
-                            정말 감사해요, We Pets!"
-                        </blockquote>
-                        <p class="testimonial-author">- 초보 집사 '김민지'님 & 해피 🐶</p>
-                    </div>
-
-                    <!-- 후기 2 -->
-                    <div class="testimonial-item">
-                        <img src="images/testimonial-avatar-2.jpg" alt="박서준 님 프로필 사진" class="testimonial-avatar">
-                        <blockquote class="testimonial-quote">
-                            "밤마다 울고 가구를 긁던 우리 냥이 때문에 잠 못 이뤘는데, We Pets 행동 가이드 보고
-                            환경을 바꿔주니 거짓말처럼 얌전해졌어요! 전문가 상담보다 더 도움이 됐네요."
-                        </blockquote>
-                        <p class="testimonial-author">- 고민 해결 집사 '박서준'님 & 나비 🐱</p>
-                    </div>
-
-                    <!-- 후기 3 (추가 예시) -->
-                    <div class="testimonial-item">
-                        <img src="images/testimonial-avatar-3.jpg" alt="이수현 님 프로필 사진" class="testimonial-avatar">
-                        <blockquote class="testimonial-quote">
-                            "인터넷 정보는 너무 많고 뭐가 맞는지 혼란스러웠는데, We Pets는 전문가가 검증한 내용이라
-                            믿음이 가요. 덕분에 우리 아이 건강 관리에 자신감이 생겼습니다!"
-                        </blockquote>
-                        <p class="testimonial-author">- 정보 신뢰 집사 '이수현'님 & 튼튼 🐾</p>
-                    </div>
-                </div>
-                <!-- 슬라이더 네비게이션 (JS로 기능 구현 필요) -->
-                <!-- <div class="slider-nav">
-                    <button class="prev-btn"><</button>
-                    <button class="next-btn">></button>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- Section 7: 마지막 행동 유도 -->
-        <section id="final-cta" class="final-cta-section section-padding text-center">
-            <div class="container">
-                <h2 class="final-cta-title">
-                    이제, '나도 모르는 사이'가 아닌<br>
-                    <span class="highlight-strong">'가장 잘 아는 사이'</span>가 될 시간입니다.
-                </h2>
-                <p class="final-cta-subtitle">
-                    반려동물과의 행복한 동행, We Pets와 함께 지금 바로 시작하세요!
-                </p>
-                <a href="#guides" class="btn btn-primary btn-lg">나에게 맞는 We Pets 가이드 찾기</a>
-                <p class="final-cta-sublink">
-                    궁금한 점이 있다면? <a href="#faq" class="faq-link">자주 묻는 질문(FAQ) 보기</a>
-                    <!-- 뉴스레터 구독은 나중에 추가 고려 -->
-                </p>
-            </div>
-        </section>
-    </main>
-
-    <!-- 푸터 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="images/logo.png" alt="We Pets 로고"> <!-- 로고 이미지 경로 수정 필요 -->
-                    <span>We Pets</span>
-                </div>
-                <div class="footer-info">
-                    <p>© 2024 We Pets. All Rights Reserved.</p>
-                    <p>
-                        <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a>
-                    </p>
-                </div>
-                <div class="footer-contact">
-                    <p>문의: contact@wepets.com</p>
-                    <!-- SNS 링크 등 추가 가능 -->
-                </div>
-            </div>
+        
+        <div class="footer-links">
+          <h3>서비스</h3>
+          <ul>
+            <li><a href="#">맞춤형 체크리스트</a></li>
+            <li><a href="#">전문가 상담</a></li>
+            <li><a href="#">입양 가이드북</a></li>
+            <li><a href="#">지역 서비스 연결</a></li>
+            <li><a href="#">훈련 계획</a></li>
+          </ul>
         </div>
-    </footer>
-
-    <script src="js/script.js"></script>
+        
+        <div class="footer-links">
+          <h3>정보</h3>
+          <ul>
+            <li><a href="#">회사 소개</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+            <li><a href="#">공지사항</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>문의</h3>
+          <ul>
+            <li><a href="#">고객센터</a></li>
+            <li><a href="#">이메일: help@puppyfriends.kr</a></li>
+            <li><a href="#">전화: 02-123-4567</a></li>
+            <li><a href="#">제휴 문의</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 퍼피프렌즈. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // 스크롤 시 헤더 스타일 변경
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+      } else {
+        header.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+      }
+    });
+    
+    // 버튼 클릭 이벤트
+    document.querySelectorAll('.btn-primary, .cta-btn-white').forEach(button => {
+      button.addEventListener('click', function() {
+        alert('서비스 준비 중입니다. 곧 만나뵙겠습니다!');
+      });
+    });
+    
+    // 스무스 스크롤
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
